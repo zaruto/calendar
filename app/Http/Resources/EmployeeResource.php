@@ -56,8 +56,8 @@ class EmployeeResource extends JsonResource
                     'employee_id' => $employeeId,
                 ]);
             })
-            ->flatten(1)
-            ->groupBy(['date']);
+            ->flatten(1);
+//            ->groupBy(['date']);
     }
 
 }
