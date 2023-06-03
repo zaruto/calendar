@@ -416,6 +416,8 @@ class DatabaseSeeder extends Seeder
                     'employee_id' => $employee->id
                 ], [
                     'arrangementable_type' => Shift::class,
+                    'name' => $shift->name,
+                    'color' => $shift->color,
                     'start_time' => $shift->start_time,
                     'end_time' => $shift->end_time,
                     'hrs' => Carbon::createFromFormat('Y-m-d H:i', now()->toDateString() . " " . $shift->start_time)->diffInHours(Carbon::createFromFormat('Y-m-d H:i', now()->toDateString() . " " . $shift->end_time)),

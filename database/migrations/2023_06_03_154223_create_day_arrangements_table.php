@@ -11,6 +11,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('employee_id');
             $table->string('arrangementable_type')->index();
+            $table->string('name')->index();
+            $table->string('color')->index();
             $table->date('date')->index();
             $table->string('start_time')->index();
             $table->string('end_time')->index();
