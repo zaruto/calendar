@@ -24,7 +24,7 @@ class GroupResource extends JsonResource
         $employees = Employee::query()->oldest('name')
             ->where('group_id', $this->id)
             ->with(['dayArrangements'])
-            ->fastPaginate()
+            ->fastPaginate(4)
             ->withQueryString();
 
         return $employees->setCollection(EmployeeResource::collection($employees)->getCollection());
