@@ -26,7 +26,7 @@ class EmployeeResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'day_arrangements_count' => $this->day_arrangements_count,
-            'events' => $this->fillOffDaysWhereShiftsMissing(CarbonPeriod::create('2023-05-01', '2023-05-31'), collect($this->id), $this->attendanceables()),
+            'shifts' => $this->fillOffDaysWhereShiftsMissing(CarbonPeriod::create('2023-05-01', '2023-05-31'), collect($this->id), $this->attendanceables()),
         ];
     }
 
