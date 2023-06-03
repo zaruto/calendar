@@ -15,25 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-    $start = '2023-05-01';
-    $end = '2023-05-07';
-
-    ray()->showDuplicateQueries();
-
-    $groups = \App\Models\Group::query()
-//        ->with(['employees' => function ($builder) {
-//        $builder->fastPaginate(1);
-//    }])
-->fastPaginate();
-
-//    return $groups;
-
-    //    $groups->setCollection($groups->getCollection()->map(function ($groups) {
-//    }));
-
-    return $groups->setCollection(\App\Http\Resources\GroupResource::collection($groups)->getCollection());
-
-
-});
+Route::get('/', function () {});
