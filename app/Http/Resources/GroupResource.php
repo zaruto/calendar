@@ -25,7 +25,7 @@ class GroupResource extends JsonResource
     protected function employees()
     {
         $employees = Employee::query()->oldest('name')
-            ->where('group_id', request('group_id') ?? $this->id)
+            ->where('group_id',  $this->id)
             ->withCount('dayArrangements')
             ->withSum('dayArrangements', 'hrs')
             ->with(['dayArrangements'])

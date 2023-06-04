@@ -367,7 +367,7 @@ class DatabaseSeeder extends Seeder
         ];
 
 
-//        Group::query()->upsert($groups, 'id');
+        Group::query()->upsert($groups, 'id');
 
         $worksite = WorkSite::firstOrCreate(['name' => "loopcraft", 'desc' => "loopcraft"]);
 

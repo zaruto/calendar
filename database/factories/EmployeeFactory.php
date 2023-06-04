@@ -55,9 +55,9 @@ class EmployeeFactory extends Factory
             "Tech Poltergeists",
             "Chaos Crew",
             "Magic Apples",
-            "Epic Pixels & Potion",
-            'Taliban',
-            'Al-Qaeda',
+//            "Epic Pixels & Potion",
+//            'Taliban',
+//            'Al-Qaeda',
         ]);
 
         $name = $this->faker->name();
@@ -86,9 +86,7 @@ class EmployeeFactory extends Factory
                 'name' => $departments->random()
             ]),
             'worksite_id' => WorkSite::inRandomOrder()->first()->id,
-            'group_id' => Group::factory()->create([
-               'name' => $groups->random()
-            ]),
+            'group_id' => Group::inRandomOrder()->first()->id,
         ];
     }
 }
