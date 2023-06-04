@@ -354,6 +354,16 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'epic-pixels',
             ],
 
+            [
+                'name' => 'Taliban',
+                'slug' => 'taliban',
+            ],
+
+            [
+                'name' => 'Al-Qaeda',
+                'slug' => 'al-Qaeda',
+            ],
+
         ];
 
 
@@ -362,6 +372,14 @@ class DatabaseSeeder extends Seeder
         $worksite = WorkSite::firstOrCreate(['name' => "loopcraft", 'desc' => "loopcraft"]);
 
         $current_date = now();
+
+        Shift::query()->firstOrCreate([
+            'name' => 'Off Day',
+            'color' => '#B45309',
+            'start_time' => '00:00',
+            'end_time' => '11:59',
+//           'hrs' => Carbon::createFromFormat('Y-m-d H:i', "$current_date ".'09:00')->diffInHours(Carbon::createFromFormat('Y-m-d H:i', "$current_date ".'17:00')),
+        ]);
 
 
         Shift::query()->firstOrCreate([

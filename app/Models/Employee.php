@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Employee extends Model
 {
     use SoftDeletes;
-
     protected $guarded = [];
 
     public function dayArrangements(): HasMany

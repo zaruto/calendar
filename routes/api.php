@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('calendars', [\App\Http\Controllers\AttendanceableController::class, 'index']);
+Route::get('employees', [\App\Http\Controllers\EmployeesController::class, 'index']);
+

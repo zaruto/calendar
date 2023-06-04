@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Resources\EmployeeResource;
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {});
+Route::get('/', function () {
+
+//    $employees = Employee::query()->oldest('name')
+//        ->where('group_id', 1)
+//        ->withCount('dayArrangements')
+//        ->withSum('dayArrangements', 'hrs')
+//        ->with(['dayArrangements'])
+//        ->fastPaginate(1)
+//        ->withQueryString();
+
+//    $d  = \App\Models\Department::pluck('name');
+
+    return $employees;
+});
