@@ -15,7 +15,7 @@ class AttendanceableController extends Controller
                 $query->where('id', request('group_id'));
             })
             ->withSum('dayArrangements', 'hrs')
-            ->fastPaginate(1)
+            ->fastPaginate()
             ->withQueryString();
 
         return $groups->setCollection(GroupResource::collection($groups)->getCollection());

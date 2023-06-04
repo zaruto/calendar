@@ -14,7 +14,7 @@ class EmployeesController extends Controller
             ->withCount('dayArrangements')
             ->withSum('dayArrangements', 'hrs')
             ->with(['dayArrangements'])
-            ->fastPaginate(2)
+            ->fastPaginate(4)
             ->withQueryString()
             ->setPath(config('app.url') . '/api/employees')
             ->appends(['group_id' => request('group_id')]);
