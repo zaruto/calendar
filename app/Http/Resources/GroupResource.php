@@ -29,7 +29,7 @@ class GroupResource extends JsonResource
             ->withCount('dayArrangements')
             ->withSum('dayArrangements', 'hrs')
             ->with(['dayArrangements'])
-            ->fastPaginate(4)
+            ->fastPaginate(10)
             ->withQueryString()
             ->setPath(config('app.url').'/api/employees')
             ->appends(['group_id' => $this->id]);
