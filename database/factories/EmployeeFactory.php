@@ -85,9 +85,7 @@ class EmployeeFactory extends Factory
             'department_id' => Department::factory()->create([
                 'name' => $departments->random()
             ]),
-            'worksite_id' => WorkSite::factory()->create([
-                'name' =>  'The loopcraft'
-            ]),
+            'worksite_id' => WorkSite::inRandomOrder()->first()->id,
             'group_id' => Group::factory()->create([
                'name' => $groups->random()
             ]),
