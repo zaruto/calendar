@@ -401,7 +401,7 @@ class DatabaseSeeder extends Seeder
 
         $shifts = Shift::all();
 
-        Employee::factory(200)->create();
+        Employee::factory(150)->create();
 
         $employees = Employee::all();
         $employees->each(function ($employee) use ($shifts) {
