@@ -35,7 +35,7 @@ class EmployeeResource extends JsonResource
     {
         return $this->dayArrangements()
             ->whereBetween('date', ['2023-05-01', '2023-05-31'])
-            ->select(['id', 'date', 'start_time', 'end_time', 'employee_id','name', 'color'])
+            ->select(['id', 'date', 'start_time', 'end_time', 'employee_id','name', 'color', 'is_offday'])
             ->oldest('date')
             ->oldest('start_time')
             ->get()
@@ -54,6 +54,7 @@ class EmployeeResource extends JsonResource
 
                 return $attendances[$employeeId][$date] ?? new Fluent([
                     'date' => $date,
+                    'is_offday' => 0,
                     'name' => null,
                     'employee_id' => $employeeId,
                 ]);
