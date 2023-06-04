@@ -21,9 +21,7 @@ class EmployeesController extends Controller
 
 
         return response([
-            'employees' => [
-                $employees->setCollection(EmployeeResource::collection($employees)->getCollection())
-            ]
+            'employees' => $employees->setCollection(EmployeeResource::collection($employees)->getCollection())
         ]);
 
     }
