@@ -15,6 +15,7 @@ class GroupResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'day_arrangements_sum_hrs' => $this->day_arrangements_sum_hrs,
             'employees' => $this->employees(),
         ];
     }
@@ -23,6 +24,8 @@ class GroupResource extends JsonResource
     {
         $employees = Employee::query()->oldest('name')
             ->where('group_id', $this->id)
+            ->withCount('dayArrangements')
+            ->withSum('dayArrangements', 'hrs')
             ->with(['dayArrangements'])
             ->fastPaginate(4)
             ->withQueryString();

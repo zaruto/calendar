@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Str;
 
 /** @mixin Employee */
 class EmployeeResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $days = collect(CarbonPeriod::create('2023-05-01', '2023-05-31'))->count();
+
         return [
             'id' => $this->id,
             'department_id' => $this->department_id,
@@ -22,10 +23,9 @@ class EmployeeResource extends JsonResource
             'worksite_id' => $this->worksite_id,
             'group_id' => $this->group_id,
             'name' => $this->name,
+            'missing_days' => $days - $this->day_arrangements_count,
             'image_url' => $this->image_url,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'day_arrangements_count' => $this->day_arrangements_count,
+            'day_arrangements_sum_hrs' => $this->day_arrangements_sum_hrs,
             'shifts' => $this->fillOffDaysWhereShiftsMissing(CarbonPeriod::create('2023-05-01', '2023-05-31'), collect($this->id), $this->attendanceables()),
         ];
     }

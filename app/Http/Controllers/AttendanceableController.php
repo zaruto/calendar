@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\CarbonPeriod;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Fluent;
-use Illuminate\Support\Str;
+use App\Http\Resources\GroupResource;
+use App\Models\Group;
+use Illuminate\Http\Request;
 
 class AttendanceableController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $groups = \App\Models\Group::query()->fastPaginate();
-        return $groups->setCollection(\App\Http\Resources\GroupResource::collection($groups)->getCollection());
+        $groups = Group::query()->withSum('dayArrangements', 'hrs')->fastPaginate();
+        return $groups->setCollection(GroupResource::collection($groups)->getCollection());
     }
 
 }
