@@ -14,11 +14,17 @@ class EmployeesController extends Controller
             ->withCount('dayArrangements')
             ->withSum('dayArrangements', 'hrs')
             ->with(['dayArrangements'])
-            ->fastPaginate(1)
+            ->fastPaginate(2)
             ->withQueryString()
-            ->setPath(config('app.url').'/api/employees')
+            ->setPath(config('app.url') . '/api/employees')
             ->appends(['group_id' => request('group_id')]);
 
-        return $employees->setCollection(EmployeeResource::collection($employees)->getCollection());
+
+        return response([
+            'employees' => [
+                $employees->setCollection(EmployeeResource::collection($employees)->getCollection())
+            ]
+        ]);
+
     }
 }
