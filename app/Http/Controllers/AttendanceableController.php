@@ -11,6 +11,7 @@ class AttendanceableController extends Controller
     public function index(Request $request)
     {
         $groups = Group::query()
+            ->oldest('name')
             ->withSum('dayArrangements', 'hrs')
             ->fastPaginate()
             ->withQueryString();
