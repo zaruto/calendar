@@ -367,7 +367,7 @@ class DatabaseSeeder extends Seeder
         ];
 
 
-        Group::query()->upsert($groups, 'id');
+//        Group::query()->upsert($groups, 'id');
 
         $worksite = WorkSite::firstOrCreate(['name' => "loopcraft", 'desc' => "loopcraft"]);
 
@@ -401,27 +401,11 @@ class DatabaseSeeder extends Seeder
 
         $shifts = Shift::all();
 
+        Employee::factory(200)->create();
 
-        collect($employee)->each(function ($employee) use ($worksite, $groups, $shifts) {
+        $employees = Employee::all();
+        $employees->each(function ($employee) use ($shifts) {
 
-            $designation = Designation::firstOrCreate([
-                'name' => $employee['designation'],
-                'slug' => str($employee['designation'])->slug()
-            ]);
-
-            $department = Department::firstOrCreate([
-                'name' => $employee['department'],
-                'slug' => str($employee['department'])->slug(),
-                'desc' => $employee['department'],
-            ]);
-
-            $employee = Employee::firstOrCreate([
-                'name' => $employee['title'],
-                'image_url' => $employee['avatar'],
-                'worksite_id' => $worksite->id,
-                'department_id' => $department->id,
-                'designation_id' => $designation->id
-            ], ['group_id' => Group::inRandomOrder()->first()?->id,]);
 
             $periods = CarbonPeriod::create(now()->subMonth()->startOfMonth(), now()->subMonth()->endOfMonth());
 
@@ -434,11 +418,14 @@ class DatabaseSeeder extends Seeder
                     'employee_id' => $employee->id
                 ], [
                     'arrangementable_type' => Shift::class,
+                    'is_offday' => $shift->name == 'Off Day' ? 1 : 0,
                     'name' => $shift->name,
                     'color' => $shift->color,
                     'start_time' => $shift->start_time,
                     'end_time' => $shift->end_time,
-                    'hrs' => Carbon::createFromFormat('Y-m-d H:i', now()->toDateString() . " " . $shift->start_time)->diffInHours(Carbon::createFromFormat('Y-m-d H:i', now()->toDateString() . " " . $shift->end_time)),
+                    'hrs' =>
+                        $shift->name == 'Off Day' ? 0 :
+                        Carbon::createFromFormat('Y-m-d H:i', now()->toDateString() . " " . $shift->start_time)->diffInHours(Carbon::createFromFormat('Y-m-d H:i', now()->toDateString() . " " . $shift->end_time)),
                 ]);
             });
 

@@ -25,6 +25,7 @@ class EmployeeResource extends JsonResource
             'name' => $this->name,
             'missing_days' => $days - $this->day_arrangements_count,
             'image_url' => $this->image_url,
+            'desigination' => $this->designation,
             'day_arrangements_sum_hrs' => $this->day_arrangements_sum_hrs,
             'shifts' => $this->fillOffDaysWhereShiftsMissing(CarbonPeriod::create('2023-05-01', '2023-05-31'), collect($this->id), $this->attendanceables()),
         ];

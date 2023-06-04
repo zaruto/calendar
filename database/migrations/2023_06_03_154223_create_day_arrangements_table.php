@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('employee_id');
             $table->string('arrangementable_type')->index();
+            $table->boolean('is_offday')->default(0);
             $table->string('name')->index();
             $table->string('color')->index();
             $table->date('date')->index();

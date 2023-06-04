@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+
+
+//    return \App\Models\Group::query()->pluck('name');
 //    $employees = Employee::query()->oldest('name')
 //        ->where('group_id', 1)
 //        ->withCount('dayArrangements')
@@ -28,5 +31,5 @@ Route::get('/', function () {
 
 //    $d  = \App\Models\Department::pluck('name');
 
-    return $employees;
+//    return $employees;
 });
