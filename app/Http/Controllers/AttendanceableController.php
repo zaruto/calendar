@@ -11,9 +11,6 @@ class AttendanceableController extends Controller
     public function index(Request $request)
     {
         $groups = Group::query()
-            ->when(request()->has('group_id'), function ($query) {
-                $query->where('id', request('group_id'));
-            })
             ->withSum('dayArrangements', 'hrs')
             ->fastPaginate()
             ->withQueryString();
