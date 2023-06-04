@@ -375,7 +375,7 @@ class DatabaseSeeder extends Seeder
 
         Shift::query()->firstOrCreate([
             'name' => 'Off Day',
-            'color' => '#B45309',
+            'color' => '#c1c1c1',
             'start_time' => '00:00',
             'end_time' => '11:59',
 //           'hrs' => Carbon::createFromFormat('Y-m-d H:i', "$current_date ".'09:00')->diffInHours(Carbon::createFromFormat('Y-m-d H:i', "$current_date ".'17:00')),
