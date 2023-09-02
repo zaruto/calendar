@@ -17,19 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-
-
-//    return \App\Models\Group::query()->pluck('name');
-//    $employees = Employee::query()->oldest('name')
-//        ->where('group_id', 1)
-//        ->withCount('dayArrangements')
-//        ->withSum('dayArrangements', 'hrs')
-//        ->with(['dayArrangements'])
-//        ->fastPaginate(1)
-//        ->withQueryString();
-
-//    $d  = \App\Models\Department::pluck('name');
-
-//    return $employees;
+    GeneratTimeSheet::dispatch();
+    GenerateTimeSheet::dispatch();
 });
